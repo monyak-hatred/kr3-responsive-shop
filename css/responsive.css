@@ -1,0 +1,222 @@
+/* Адаптивные стили для контрольной работы №3. Подход: Mobile First.
+   Базовые стили рассчитаны на мобильный экран.
+   Расширения добавляются через min-width медиазапросы. */
+
+/* === 1. БАЗОВЫЕ ПРАВИЛА (стр. 10) === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* === 2. АДАПТАЦИЯ КОНТЕЙНЕРОВ (стр. 11) === */
+/* Ограничиваем ширину и центрируем, как требует методичка */
+.site-header__inner, 
+.hero, 
+.catalog-layout, 
+.product-detail, 
+.aside-info {
+  width: min(100% - 32px, 1200px);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: clamp(24px, 5vw, 64px);
+}
+
+/* === 3. АДАПТАЦИЯ НАВИГАЦИИ (стр. 11) === */
+.site-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.site-nav__link {
+  display: block;
+  padding: 12px 16px;
+}
+
+@media (min-width: 768px) {
+  .site-nav__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* === 4. STICKY-НАВИГАЦИЯ (стр. 12) === */
+.site-header {
+  position: static;
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+}
+
+/* === 5. АДАПТАЦИЯ HERO-БЛОКА (стр. 12) === */
+.hero {
+  display: grid;
+  gap: var(--space-lg, 24px);
+  align-items: center;
+}
+
+.hero__title {
+  font-size: clamp(28px, 7vw, 56px);
+  line-height: 1.1;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 520px);
+  }
+}
+
+/* === 6. АДАПТАЦИЯ СЕТКИ КАРТОЧЕК (стр. 13) === */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md, 16px);
+}
+
+.product-card {
+  min-width: 0;
+}
+
+.product-card__title, .product-card__description {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 640px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* === 7. АДАПТАЦИЯ КАТАЛОГА (стр. 14) === */
+.catalog-layout {
+  display: grid;
+  gap: var(--space-lg, 24px);
+}
+
+.catalog-filters {
+  order: -1; /* На мобилке фильтры идут первыми */
+}
+
+@media (min-width: 1024px) {
+  .catalog-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    align-items: start;
+  }
+  .catalog-filters {
+    position: sticky;
+    top: 88px;
+    order: initial;
+  }
+}
+
+/* === 8. АДАПТАЦИЯ ИЗОБРАЖЕНИЙ (стр. 15) === */
+.product-card__image, .product-detail__image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-md, 8px);
+}
+
+/* === 9. АДАПТАЦИЯ ФОРМЫ (стр. 16) === */
+/* ВАЖНО: используем твои классы order-form__field вместо order-form_group */
+.order-form {
+  display: grid;
+  gap: var(--space-md, 16px);
+}
+
+.order-form__field {
+  display: grid;
+  gap: var(--space-xs, 8px);
+}
+
+.order-form__input, 
+.order-form__textarea, 
+.order-form__select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.order-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+@media (min-width: 768px) {
+  .order-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .order-form__field--checkbox, 
+  .order-form__actions {
+    grid-column: 1 / -1; /* Широкие элементы на всю строку */
+  }
+}
+
+/* === 10. АДАПТАЦИЯ ТАБЛИЦЫ (стр. 17) === */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+/* === 11. КНОПКА «НАВЕРХ» (стр. 18) === */
+.up-button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+}
+
+@media (min-width: 768px) {
+  .up-button {
+    right: 32px;
+    bottom: 32px;
+  }
+}
+/* === 12. ПРИЖИМАЕМ ПОДВАЛ К НИЗУ СТРАНИЦЫ === */
+.page-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-main {
+  flex: 1 0 auto; /* Заставляет main растягиваться и выталкивать футер вниз */
+}
