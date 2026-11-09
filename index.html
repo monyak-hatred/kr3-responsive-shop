@@ -10,6 +10,7 @@
   <script src="js/main.js" defer></script>
 </head>
 <body class="page-body">
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
 
   <header class="site-header">
     <div class="site-header__inner">
@@ -18,7 +19,7 @@
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li class="site-nav__item">
-            <a class="site-nav__link site-nav__link--active" href="index.html">Главная</a>
+            <a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a>
           </li>
           <li class="site-nav__item">
             <a class="site-nav__link" href="catalog.html">Каталог</a>
@@ -37,7 +38,7 @@
     </div>
   </header>
 
-  <main class="page-main">
+  <main id="main" class="page-main">
 
     <section class="hero">
       <h1 class="hero__title">Учебный интернет-магазин</h1>
@@ -195,7 +196,7 @@
       </div>
 
       <div class="order-form__actions">
-        <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
+        <button type="button" id="close-order-dialog" class="btn-close" aria-label="Закрыть окно"></button>
         <button class="button button--primary" type="submit">Отправить заявку</button>
       </div>
 

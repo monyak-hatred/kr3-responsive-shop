@@ -10,6 +10,7 @@
   <script src="js/main.js" defer></script>
 </head>
 <body class="page-body">
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
 
   <header class="site-header">
     <div class="site-header__inner">
@@ -27,7 +28,7 @@
             <a class="site-nav__link" href="product.html">Товар</a>
           </li>
           <li class="site-nav__item">
-            <a class="site-nav__link site-nav__link--active" href="order.html">Заявка</a>
+            <a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a>
           </li>
           <li class="site-nav__item">
             <a class="site-nav__link" href="contacts.html">Контакты</a>
@@ -37,7 +38,7 @@
     </div>
   </header>
 
-  <main class="page-main">
+  <main id="main" class="page-main">
 
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
       <a class="breadcrumbs__link" href="index.html">Главная</a>
